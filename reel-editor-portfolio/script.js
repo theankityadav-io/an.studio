@@ -9,6 +9,8 @@ const SITE = {
 };
 
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const isSmallScreen = window.matchMedia("(max-width: 650px)").matches;
+const prefersDataSaving = navigator.connection?.saveData === true;
 
 function setBrandName() {
   document.querySelectorAll("[data-brand]").forEach((element) => {
@@ -95,7 +97,7 @@ function loadPortfolioVideo(mediaCard) {
 
   video.load();
 
-  if (!prefersReducedMotion) {
+  if (!prefersReducedMotion && !isSmallScreen && !prefersDataSaving) {
     video.play().catch(() => {
       // Some browsers require a user gesture before playback.
     });
@@ -118,7 +120,7 @@ function setupPortfolioVideos() {
       observer.unobserve(entry.target);
     });
   }, {
-    rootMargin: "220px 0px",
+    rootMargin: prefersDataSaving ? "0px" : (isSmallScreen ? "80px 0px" : "160px 0px"),
     threshold: 0.01,
   });
 
@@ -149,10 +151,41 @@ function setupVideoSoundControls() {
   });
 }
 
+
+function setupEmailForm() {
+  const form = document.getElementById("email-form");
+  const note = document.getElementById("contact-note");
+
+  if (!form) return;
+
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    if (!form.reportValidity()) return;
+
+    const formData = new FormData(form);
+    const senderName = String(formData.get("name") || "").trim();
+    const senderEmail = String(formData.get("email") || "").trim();
+    const message = String(formData.get("message") || "").trim();
+
+    const subject = encodeURIComponent(`Website enquiry from ${senderName}`);
+    const body = encodeURIComponent(
+      `Name: ${senderName}\nEmail: ${senderEmail}\n\nMessage:\n${message}`
+    );
+
+    window.location.href = `mailto:financewithla@gmail.com?subject=${subject}&body=${body}`;
+
+    if (note) {
+      note.textContent = "Your email app should open with your message ready. If it does not, check that an email app is configured on your device.";
+    }
+  });
+}
+
 function initialiseSite() {
   setBrandName();
   setupMobileNavigation();
   setupWhatsAppLinks();
+  setupEmailForm();
   setupPortfolioVideos();
   setupVideoSoundControls();
 }

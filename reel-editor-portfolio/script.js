@@ -107,6 +107,25 @@ function loadPortfolioVideo(mediaCard) {
 function setupPortfolioVideos() {
   const mediaCards = document.querySelectorAll(".work-media");
 
+  // On phones or data-saving connections, wait for an explicit tap before loading video files.
+  if (isSmallScreen || prefersDataSaving) {
+    mediaCards.forEach((card) => {
+      const placeholder = card.querySelector(".media-placeholder");
+      if (!placeholder) return;
+
+      placeholder.setAttribute("role", "button");
+      placeholder.setAttribute("tabindex", "0");
+      placeholder.setAttribute("aria-label", "Load video preview");
+      placeholder.addEventListener("click", () => loadPortfolioVideo(card), { once: true });
+      placeholder.addEventListener("keydown", (event) => {
+        if (event.key !== "Enter" && event.key !== " ") return;
+        event.preventDefault();
+        loadPortfolioVideo(card);
+      });
+    });
+    return;
+  }
+
   if (!("IntersectionObserver" in window)) {
     mediaCards.forEach(loadPortfolioVideo);
     return;

@@ -1,8 +1,8 @@
 // Personalize these values before publishing.
 const CONFIG = {
-  brandName: "Aany..studio",
+  brandName: "Editz of Shivam",
   // Use country code + number, digits only. Example format: 919876543210
-  whatsappNumber: "918377038072",
+  whatsappNumber: "919582048072",
   // Optional: replace with your Instagram profile URL.
   instagramUrl: ""
 };

@@ -181,3 +181,36 @@ code { font-size: 10px; background: #ffffff16; padding: 3px 5px; border-radius: 
   .site-footer > span { order: 3; width: 100%; }
 }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; animation: none !important; } }
+
+
+/* Editz of Shivam — monochrome identity */
+:root {
+  --paper: #ffffff;
+  --white: #ffffff;
+  --ink: #050505;
+  --muted: #666666;
+  --line: #dedede;
+  --accent: #000000;
+}
+body, .site-header { background: #fff; color: #050505; }
+.site-header { border-color: #dedede; }
+.brand-mark, .ticker, .note-bottom, .button-light, .button-dark,
+.nav-cta, .play-button { background: #050505; color: #fff; }
+.brand-mark, .button-dark span, .nav-cta span { color: #fff; }
+.status-dot, .package-dot, .note-dot { background: #050505; box-shadow: 0 0 0 4px #e9e9e9; }
+.ticker { background: #050505; color: #fff; }
+.ticker-inner b { color: #fff; }
+.note-bottom { color: #fff; }
+.hero-orbit { color: #bdbdbd; }
+.services-section, .process-section { background: #f1f1f1; }
+.price-card { background: #fff; border-color: #dedede; }
+.included-list li span, .pricing-note span { color: #111; }
+.contact-panel { background: #050505; color: #fff; }
+.button-light { background: #fff; color: #050505; }
+.button-light span { color: #050505; }
+.media-tag { background: #fff; color: #050505; }
+.work-media, .media-product, .media-talking, .media-lifestyle { filter: grayscale(1); }
+a:hover { opacity: .78; }
+.contact-email { margin: 12px 0 0; color: #d7dbd1; font-size: 13px; }
+.contact-email a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) { .work-media, .media-product, .media-talking, .media-lifestyle { filter: grayscale(1); } }

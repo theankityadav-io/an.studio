@@ -312,3 +312,70 @@ body, .site-header { background: #fff; color: #050505; }
   .ticker-track { animation: none; transform: none; }
   .ticker-inner[aria-hidden="true"] { display: none; }
 }
+
+
+/* Interaction fixes and mobile-first contact refinements */
+.nav > a.nav-cta { color: #fff; transition: background .2s ease, color .2s ease, transform .2s ease; }
+.nav > a.nav-cta:hover, .nav > a.nav-cta:focus-visible {
+  color: #fff;
+  background: #292929;
+  transform: translateY(-1px);
+}
+.note-dot { animation: note-dot-blink 1.1s steps(2, start) infinite; }
+@keyframes note-dot-blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: .18; }
+}
+.email-form {
+  width: min(100%, 440px);
+  margin: 28px auto 0;
+  display: grid;
+  gap: 9px;
+  text-align: left;
+}
+.email-form label {
+  margin-top: 7px;
+  color: #d7dbd1;
+  font-size: 11px;
+  font-weight: 600;
+}
+.email-form input, .email-form textarea {
+  width: 100%;
+  min-width: 0;
+  border: 1px solid #ffffff35;
+  border-radius: 10px;
+  padding: 13px 14px;
+  background: #ffffff0d;
+  color: #fff;
+  font: inherit;
+  font-size: 13px;
+  outline: none;
+}
+.email-form input::placeholder, .email-form textarea::placeholder { color: #a9afa5; }
+.email-form input:focus, .email-form textarea:focus { border-color: #fff; box-shadow: 0 0 0 3px #ffffff18; }
+.email-form textarea { resize: vertical; min-height: 105px; }
+.email-submit { justify-self: center; margin-top: 12px; border: 0; cursor: pointer; min-height: 48px; }
+.copyright-link {
+  color: #777a71;
+  font-size: 10px;
+  opacity: .72;
+  transition: opacity .2s ease, color .2s ease;
+}
+.copyright-link:hover, .copyright-link:focus-visible { color: #050505; opacity: 1; text-decoration: underline; text-underline-offset: 4px; }
+@media (max-width: 650px) {
+  .site-header { z-index: 30; }
+  .menu-toggle { min-width: 44px; min-height: 44px; }
+  .nav { z-index: 31; }
+  .hero-art { min-height: 350px; }
+  .work-grid { gap: 24px; }
+  .work-media { aspect-ratio: 4 / 4.8; }
+  .video-sound-toggle { width: 42px; height: 42px; right: 10px; bottom: 10px; }
+  .button { min-height: 48px; }
+  .contact-panel { padding-inline: 18px; }
+  .email-form { gap: 8px; }
+  .email-form input, .email-form textarea { font-size: 16px; }
+  .site-footer { align-items: flex-start; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .note-dot { animation: none !important; opacity: 1; }
+}
